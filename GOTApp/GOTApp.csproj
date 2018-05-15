@@ -109,10 +109,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Icons\age.jpg" />
+    <Content Include="Content\Icons\age1.jpg" />
+    <Content Include="Content\Icons\char.jpg" />
+    <Content Include="Content\Icons\culture.jpg" />
+    <Content Include="Content\Icons\event.jpg" />
+    <Content Include="Content\Icons\house.jpg" />
+    <Content Include="Content\Icons\Location_large.jpg" />
+    <Content Include="Content\Icons\The_Wall.jpg" />
+    <Content Include="Content\Icons\TITLE.jpg" />
     <Content Include="Global.asax" />
-    <Content Include="scripts\GOTctrls\ctrlGotApp.js" />
-    <Content Include="scripts\Helpers\configurationHelper.js" />
-    <Content Include="scripts\Helpers\ServiceHelper.js" />
+    <Content Include="index.html" />
+    <Content Include="scripts\Controllers\configurationHelper.js" />
+    <Content Include="scripts\Controllers\controller.js" />
+    <Content Include="scripts\Controllers\factory.js" />
+    <Content Include="scripts\Controllers\maincontroller.js" />
+    <Content Include="scripts\Controllers\script.js" />
+    <Content Include="scripts\Lib\ai.0.22.9-build00167.js" />
+    <Content Include="scripts\Lib\ai.0.22.9-build00167.min.js" />
+    <Content Include="scripts\Lib\angular-locale_en-in.js" />
     <Content Include="scripts\Lib\angular-route.min.js" />
     <Content Include="scripts\Lib\angular-sanitize.min.js" />
     <Content Include="scripts\Lib\angular-ui-bootstrap-tpls.min.js" />
@@ -121,18 +136,23 @@
     <Content Include="scripts\Lib\base_comp_chartjs_v2.js" />
     <Content Include="scripts\Lib\bootstrap-filestyle.js" />
     <Content Include="scripts\Lib\bootstrap-filestyle.min.js" />
+    <Content Include="scripts\Lib\bootstrap-notify.min.js" />
     <Content Include="scripts\Lib\bootstrap.min.js" />
+    <Content Include="scripts\Lib\cldr.min.js" />
     <Content Include="scripts\Lib\custom-scripts.js" />
     <Content Include="scripts\Lib\digio.js" />
+    <Content Include="scripts\Lib\globalize.min.js" />
     <Content Include="scripts\Lib\jquery-2.2.3.min.js" />
+    <Content Include="scripts\Lib\jquery.form.js" />
     <Content Include="scripts\Lib\jquery.scrollLock.min.js" />
     <Content Include="scripts\Lib\jquery.slimscroll.min.js" />
     <Content Include="scripts\Lib\morris.js" />
     <Content Include="scripts\Lib\raphael-2.js" />
     <Content Include="scripts\Lib\signature.js" />
     <Content Include="scripts\Lib\signature_pad.min.js" />
-    <Content Include="scripts\ReferenceFile.js" />
-    <Content Include="Views\GOTHomePage.html" />
+    <Content Include="Views\Info.html" />
+    <Content Include="Views\contact.html" />
+    <Content Include="Views\Home.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

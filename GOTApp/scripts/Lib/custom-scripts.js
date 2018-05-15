@@ -8,210 +8,39 @@
 
 (function ($) {
     "use strict";
-    var mainApp = {
 
-        initFunction: function () {
-            /*MENU 
-            ------------------------------------*/
-            $('#main-menu').metisMenu();
-
-            $(window).bind("load resize", function () {
-                if ($(this).width() < 768) {
-                    $('div.sidebar-collapse').addClass('collapse')
-                } else {
-                    $('div.sidebar-collapse').removeClass('collapse')
-                }
-            });
-
-            /* MORRIS BAR CHART
-			-----------------------------------------*/
-            Morris.Bar({
-                element: 'morris-bar-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
-                hideHover: 'auto',
-                resize: true
-            });
-
-            /* MORRIS DONUT CHART
-			----------------------------------------*/
-            Morris.Donut({
-                element: 'morris-donut-chart',
-                data: [{
-                    label: "Download Sales",
-                    value: 12
-                }, {
-                    label: "In-Store Sales",
-                    value: 30
-                }, {
-                    label: "Mail-Order Sales",
-                    value: 20
-                }],
-                resize: true
-            });
-
-            /* MORRIS AREA CHART
-			----------------------------------------*/
-
-            Morris.Area({
-                element: 'morris-area-chart',
-                data: [{
-                    period: '2010 Q1',
-                    iphone: 2666,
-                    ipad: null,
-                    itouch: 2647
-                }, {
-                    period: '2010 Q2',
-                    iphone: 2778,
-                    ipad: 2294,
-                    itouch: 2441
-                }, {
-                    period: '2010 Q3',
-                    iphone: 4912,
-                    ipad: 1969,
-                    itouch: 2501
-                }, {
-                    period: '2010 Q4',
-                    iphone: 3767,
-                    ipad: 3597,
-                    itouch: 5689
-                }, {
-                    period: '2011 Q1',
-                    iphone: 6810,
-                    ipad: 1914,
-                    itouch: 2293
-                }, {
-                    period: '2011 Q2',
-                    iphone: 5670,
-                    ipad: 4293,
-                    itouch: 1881
-                }, {
-                    period: '2011 Q3',
-                    iphone: 4820,
-                    ipad: 3795,
-                    itouch: 1588
-                }, {
-                    period: '2011 Q4',
-                    iphone: 15073,
-                    ipad: 5967,
-                    itouch: 5175
-                }, {
-                    period: '2012 Q1',
-                    iphone: 10687,
-                    ipad: 4460,
-                    itouch: 2028
-                }, {
-                    period: '2012 Q2',
-                    iphone: 8432,
-                    ipad: 5713,
-                    itouch: 1791
-                }],
-                xkey: 'period',
-                ykeys: ['iphone', 'ipad', 'itouch'],
-                labels: ['iPhone', 'iPad', 'iPod Touch'],
-                pointSize: 2,
-                hideHover: 'auto',
-                resize: true
-            });
-
-            /* MORRIS LINE CHART
-			----------------------------------------*/
-            Morris.Line({
-                element: 'morris-line-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
-                hideHover: 'auto',
-                resize: true
-            });
-
-
-        },
-
-        initialization: function () {
-            mainApp.initFunction();
-
-        }
-
+   
+        
+$(document).ready(function () {
+    var Authenticated = AppCommon.Common.GetStorage('AuthenticationToken');
+    if (Authenticated.length < 2) {
+        location.href = "../default.html";
+    } 
+    else {
+        //var MenuId = AppCommon.Common.GetStorage('MenuId');
+        //if (MenuId.length > 0) {
+        //    var url = window.location.href;
+        //    var n = url.lastIndexOf('/');
+        //    var routeParameter = url.substring(n + 1);
+        //    if (routeParameter == "") {
+        //        $('li').removeClass("active");
+        //    } else {
+        //        $('li').removeClass("active");
+        //        $("#" + MenuId).addClass("active");
+        //    }            
+        //}
+        GetSelection();
+        //mainApp.initFunction();
     }
-    // Initializing ///
 
-    $(document).ready(function () {
-        var Authenticated = AppCommon.Common.GetStorage('AuthenticationToken');
-        if (Authenticated.length < 2) {
-            location.href = "../default.html";
-        } else {
-            var MenuId = AppCommon.Common.GetStorage('MenuId');
-            if (MenuId.length > 0) {
-                $('li').removeClass("active");
-                $("#" + MenuId).addClass("active");
-            }
-            //mainApp.initFunction();
-        }
-    });
+});
 
+//Call When Header Button is pressed or Back Button is Pressed
+$(window).on('popstate', function (event) {
 
-
-}(jQuery));
+    GetSelection();
+   
+});
 
 $('#nav').affix({
     offset: {
@@ -220,9 +49,148 @@ $('#nav').affix({
 });
 
 
-$('#nav ul li').click(function () {
-    $('li').removeClass("active");
-    AppCommon.Common.SetStorage(AppSetting.LocalStore.CurrentMenuId, this.id);
-    $(this).addClass("active");
-});
+    //get headerMenuId based on index Present in array AppCommon.PortalMenus 
+function GetMenuId (Index)
+{
+    var MenuId = "";
+    switch(Index)
+    {
+        case 0:
+            MenuId = "#2Q";
+            break;
+        case 1:
+            MenuId = "#2R1";
+            break;
+        case 2:
+            MenuId = "#2R2";
+            break;
+        case 3:
+            MenuId = "#3F";
+            break;
+        case 4:
+            MenuId = "#M5";
+            break;
+    }
+
+    return MenuId;
+}
+
+
+//Enable and disable the header active class 
+function GetSelection()
+{
+    var UrlVar = getUrlVars();
+    var Page = UrlVar[0][0];
+    if (UrlVar[0][1] != undefined && (Page=="2R"|| Page=="2U" ))
+    {
+        Page = Page + getAllUrlParams(window.location.hash).page;
+    }
+    if (Page == "3I") {
+        Page = Page +  getAllUrlParams(window.location.hash).gt;
+    }
+    $('#nav ul li').removeClass("active");
+    $.each(AppCommon.PortalMenus, function (key, obj) {
+        if ($.inArray(Page, obj) !== -1)
+            $(GetMenuId(key)).addClass("active");
+
+    });
+
+
+}
+
+function getAllUrlParams(url) {
+
+    // get query string from url (optional) or window
+    var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+
+    // we'll store the parameters here
+    var obj = {};
+
+    // if query string exists
+    if (queryString) {
+
+        // stuff after # is not part of query string, so get rid of it
+        queryString = queryString.split('#')[0];
+
+        // split our query string into its component parts
+        var arr = queryString.split('&');
+
+        for (var i = 0; i < arr.length; i++) {
+            // separate the keys and the values
+            var a = arr[i].split('=');
+
+            // in case params look like: list[]=thing1&list[]=thing2
+            var paramNum = undefined;
+            var paramName = a[0].replace(/\[\d*\]/, function (v) {
+                paramNum = v.slice(1, -1);
+                return '';
+            });
+
+            // set parameter value (use 'true' if empty)
+            var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+
+            // (optional) keep case consistent
+            paramName = paramName.toLowerCase();
+            paramValue = paramValue.toLowerCase();
+
+            // if parameter name already exists
+            if (obj[paramName]) {
+                // convert value to array (if still string)
+                if (typeof obj[paramName] === 'string') {
+                    obj[paramName] = [obj[paramName]];
+                }
+                // if no array index number specified...
+                if (typeof paramNum === 'undefined') {
+                    // put the value on the end of the array
+                    obj[paramName].push(paramValue);
+                }
+                    // if array index number specified...
+                else {
+                    // put the value at that index number
+                    obj[paramName][paramNum] = paramValue;
+                }
+            }
+                // if param name doesn't exist yet, set it
+            else {
+                obj[paramName] = paramValue;
+            }
+        }
+    }
+
+    return obj;
+}
+
+
+//Get URL parameters
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('#') + 1).split('&');
+    for (var i = 0; i < hashes.length; i++) {
+        if (!i)
+        {
+            var val = hashes[i].replace('/', '').split('?');
+            vars[i] = val;
+
+        }
+        else
+        {
+
+            hash = hashes[i].split('?');
+            var Formattedval = hash[0].split('=');
+            vars[i]= Formattedval[1];
+ }
+       
+    }
+    return vars;
+}
+
+
+
+//$('#nav ul li').click(function () {
+//    $('li').removeClass("active");
+//    AppCommon.Common.SetStorage(AppSetting.LocalStore.CurrentMenuId, this.id);
+//    $(this).addClass("active");
+//});
+
+}(jQuery));
 
